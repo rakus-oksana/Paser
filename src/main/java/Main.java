@@ -18,7 +18,7 @@ public class Main {
         Document doc = Jsoup.connect(url).get();
         //System.out.println(doc.title());
         Elements cities = doc.select("table tr");
-        City[] parsedCities = new City[cities.size()]; // You can use List`s or other java Collections
+        City[] parsedCities = new City[cities.size()]; // You can usegit config --global user.email List`s or other java Collections
         int counter = 0;
         for (Element city : cities) {
             City myCity = City.parse(city);
