@@ -11,11 +11,13 @@ public class WeatherForecaster {
 
     //TODO Apply forecast logic for city
     public String forecast(City city){
+        if (city != null) {
+            Coordinates coordinates = city.getCoordinates();
+            if (coordinates.getCoordinates() != null) {
 
-
-
+            }
+        }
         return null;
-
     }
 
 }
