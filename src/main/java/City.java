@@ -1,14 +1,12 @@
 /**
  * Created by Victor on 03.10.2018.
  */
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.concurrent.Executors;
 
 
 @Getter
@@ -37,8 +35,7 @@ public class City {
             myCity.setAdministrativeArea(info.get(2).text());
             myCity.setNumberOfCitizens(Integer.parseInt(info.get(3).text().replaceAll("[^0-9 ].*|\\s+","")));
             myCity.setYearOfFound(info.get(4).text());
-            Coordinates coords = new Coordinates();
-            coords.setCoordinates(myCity.getUrl());
+            Coordinates coords = Coordinates.setting(myCity.getUrl());
             myCity.setCoordinates(coords);
             myCity.setArea(Double.parseDouble(info.get(5).text()));
             return myCity;

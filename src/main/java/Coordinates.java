@@ -1,25 +1,31 @@
 import lombok.Getter;
-import lombok.ToString;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
 
-@ToString
 @Getter
 public class Coordinates {
-    private String coordinates;
+    private String lat;
+    private String lon;
 
-    public void setCoordinates(String city_url) throws IOException {
+    public static Coordinates setting(String city_url) throws IOException {
         try {
             Document doc = Jsoup.connect(city_url).get();
-            Elements coords = doc.select(".geo");
-            this.coordinates = coords.first().text();
+            String[] coords = doc.select(".geo").first().text().split("; ");
+            Coordinates coordinates = new Coordinates();
+            coordinates.lat = coords[0];
+            coordinates.lon = coords[0];
+            return coordinates;
         } catch (NullPointerException e) {
-            this.coordinates = null;
+            return null;
         }
+    }
+
+    @Override
+    public String toString() {
+        return lat + "," + lon;
     }
 }
